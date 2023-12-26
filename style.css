@@ -1,0 +1,170 @@
+*{
+    background-color: rgb(21, 21, 21);
+}
+
+@keyframes loadIn{
+    from{
+        opacity: 0;
+    }
+    to{
+        opacity: 1;
+    }
+}
+
+.page-title{
+    text-align: center;
+    color: white;
+    font-size: 4em;
+    font-family: 'Ubuntu', sans-serif;
+    animation: 2s loadIn forwards;
+    opacity: 0;
+}
+
+.visualizer-title{
+    color: white;
+    font-size: 2.5em;
+    text-align: center;
+    font-family: 'Inter', sans-serif;
+    margin-top: 2em auto 2em;
+    opacity: 0;
+    animation: 2s loadIn forwards;
+    animation-delay: 0.5s;
+}
+
+.separator{
+    background-color: white;
+    width: 80%;
+    height: 2px;
+    margin: 0 auto;
+    opacity: 0;
+    animation: 2s loadIn forwards;
+}
+
+
+body{
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.element{
+    flex: 1;
+    background-image: linear-gradient(to bottom right,rgb(141, 147, 174), rgb(204, 210, 232), rgb(138, 149, 176));
+    border-left: 1px dotted white;
+    height: 20px;
+    opacity: 0;
+    animation: 2s loadIn forwards;
+    animation-delay: 1s;
+}
+
+.container{
+    width: 95%;
+    margin: 1.5em auto;
+    height: 500px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items:end;
+}
+
+.buttons-container{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+    margin: 5em auto 5em;
+}
+
+
+#entropy{
+    background-image: linear-gradient(to bottom right, rgb(251, 137, 137), rgb(231, 48, 48), rgb(208, 68, 68));
+}
+
+.algorithms-container{
+    width: 90%;
+    margin: 2em auto;
+}
+
+.algorithms{
+    color:rgb(214, 214, 214);
+    background-color: rgb(72, 72, 72);
+    font-size: 2em;
+    height: 2em;
+    margin-bottom: 1em;
+    opacity: 0;
+    animation: 2s loadIn forwards;
+    animation-delay: 2s;
+    
+}
+
+.algorithm-description{
+    color: white;
+    font-size: 1.5em;
+    opacity: 0;
+    animation: 2s loadIn forwards;
+    width: 95%;
+    margin: 0 auto 1em;
+}
+
+.code-snippet{
+    color: white;
+    font-family: 'Source Code Pro', monospace;
+    background-color: rgb(32, 32, 33);
+    font-size: 1em;
+    width: 45em;
+    margin: 0 auto 2em;
+    padding: 1em 2em;
+    opacity: 0;
+    animation: 2s loadIn forwards;
+}
+
+
+
+.buttons {
+    --glow-color: rgb(243, 248, 248);
+    --glow-spread-color: rgba(180, 202, 214, 0.781);
+    --enhanced-glow-color: rgb(197, 191, 202);
+    --btn-color: rgb(137, 135, 138);
+    border: .25em solid var(--glow-color);
+    padding: 1em 3em;
+    color: var(--glow-color);
+    font-size: 15px;
+    font-weight: bold;
+    background-color: var(--btn-color);
+    border-radius: 1em;
+    outline: none;
+    box-shadow: 0 0 1em .25em var(--glow-color),
+           0 0 4em 1em var(--glow-spread-color),
+           inset 0 0 .75em .25em var(--glow-color);
+    text-shadow: 0 0 .5em var(--glow-color);
+    position: relative;
+    transition: all 0.3s;
+    opacity: 0;
+    animation: 2s loadIn forwards;
+    animation-delay: 0.75s;
+   }
+   
+   .buttons::after {
+    pointer-events: none;
+    content: "";
+    position: absolute;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    filter: blur(0.5em);
+    opacity: .1;
+    transform: perspective(1.5em) rotateX(35deg) scale(1, .6);
+   }
+   
+   .buttons:hover {
+    color: var(--btn-color);
+    background-color: var(--glow-color);
+    box-shadow: 0 0 1em .25em var(--glow-color),
+           0 0 4em 2em var(--glow-spread-color),
+           inset 0 0 .75em .25em var(--glow-color);
+   }
+   
+   .buttons:active {
+    box-shadow: 0 0 0.6em .25em var(--glow-color),
+           0 0 2.5em 2em var(--glow-spread-color),
+           inset 0 0 .5em .25em var(--glow-color);
+   }

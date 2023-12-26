@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Sorting Algorithms</title>
+        <meta charset="UTF-8">
+        <link rel="icon" type="image/png" href="icon.png">
+        <link rel="stylesheet" href="style.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@300&display=swap" rel="stylesheet">
+    </head>
+    <body>
+        <h1 class="page-title">Learn Sorting Algoritms</h1>
+        <div class="separator"></div>
+        <h2 class="visualizer-title">Sorting Algorithm Visualizer</h2>
+        <div class="buttons-container">
+            <button id="quick-sort" class="buttons">Quick Sort</button>
+            <button id="selection-sort" class="buttons">Selection Sort</button>
+            <button id="insertion-sort" class="buttons">Insertion Sort</button>
+            <button id="entropy" class="buttons">Randomize</button>
+        </div>
+        <div class="container">
+            <div class="element" id="el_1"></div>
+            <div class="element" id="el_2"></div>
+            <div class="element" id="el_3"></div>
+            <div class="element" id="el_4"></div>
+            <div class="element" id="el_5"></div>
+            <div class="element" id="el_6"></div>
+            <div class="element" id="el_7"></div>
+            <div class="element" id="el_8"></div>
+            <div class="element" id="el_9"></div>
+            <div class="element" id="el_10"></div>
+            <div class="element" id="el_11"></div>
+            <div class="element" id="el_12"></div>
+            <div class="element" id="el_13"></div>
+            <div class="element" id="el_14"></div>
+            <div class="element" id="el_15"></div>
+            <div class="element" id="el_16"></div>
+            <div class="element" id="el_17"></div>
+            <div class="element" id="el_18"></div>
+            <div class="element" id="el_19"></div>
+            <div class="element" id="el_20"></div>
+            <div class="element" id="el_21"></div>
+            <div class="element" id="el_22"></div>
+            <div class="element" id="el_23"></div>
+            <div class="element" id="el_24"></div>
+            <div class="element" id="el_25"></div>
+            <div class="element" id="el_26"></div>
+            <div class="element" id="el_27"></div>
+            <div class="element" id="el_28"></div>
+            <div class="element" id="el_29"></div>
+            <div class="element" id="el_30"></div>
+            <div class="element" id="el_31"></div>
+            <div class="element" id="el_32"></div>
+            <div class="element" id="el_33"></div>
+            <div class="element" id="el_34"></div>
+            <div class="element" id="el_35"></div>
+            <div class="element" id="el_36"></div>
+            <div class="element" id="el_37"></div>
+            <div class="element" id="el_38"></div>
+            <div class="element" id="el_39"></div>
+            <div class="element" id="el_40"></div>
+            <div class="element" id="el_41"></div>
+            <div class="element" id="el_42"></div>
+            <div class="element" id="el_43"></div>
+            <div class="element" id="el_44"></div>
+            <div class="element" id="el_45"></div>
+            <div class="element" id="el_46"></div>
+            <div class="element" id="el_47"></div>
+            <div class="element" id="el_48"></div>
+            <div class="element" id="el_49"></div>
+            <div class="element" id="el_50"></div>
+            <div class="element" id="el_51"></div>
+            <div class="element" id="el_52"></div>
+            <div class="element" id="el_53"></div>
+            <div class="element" id="el_54"></div>
+            <div class="element" id="el_55"></div>
+            <div class="element" id="el_56"></div>
+            <div class="element" id="el_57"></div>
+            <div class="element" id="el_58"></div>
+            <div class="element" id="el_59"></div>
+            <div class="element" id="el_60"></div>
+        </div>
+        <div class="algorithms-container">
+            <details>
+                <summary class="algorithms">Quick Sort</summary>
+                <p class="algorithm-description">Quicksort is a sorting algorithm that repeatedly partitions the input into low and high parts (each part unsorted), and then recursively sorts each of those parts. To partition the input, quicksort chooses a pivot to divide the data into low and high parts. The pivot can be any value within the array being sorted, commonly the value of the middle array element. Ex: For the list {4 34 10 25 1}, the middle element is located at index 2 (the middle of indices 0..4) and has a value of 10.
+                    To partition the input, the quicksort algorithm divides the array into two parts, referred to as the low partition and the high partition. All values in the low partition are less than or equal to the pivot value. All values in the high partition are greater than or equal to the pivot value. The values in each partition are not necessarily sorted. Ex: Partitioning {4 34 10 25 1} with a pivot value of 10 results in a low partition of {4 10 1} and a high partition of {34 25}. Values equal to the pivot may appear in either or both of the partitions.
+                    </p>
+                <p class="algorithm-description"> Sample Implementation:</p>
+                <div class="code-snippet">
+                    int Partition(int numbers[], int i, int k) {<br>
+                        int l;<br>
+                        int h;<br>
+                        int midpoint;<br>
+                        int pivot;<br>
+                        int temp;<br>
+                        bool done;<br><br>
+                        
+                        /* Pick middle element as pivot */<br>
+                        midpoint = i + (k - i) / 2;<br>
+                        pivot = numbers[midpoint];<br><br>
+                        
+                        done = false;<br>
+                        l = i;<br>
+                        h = k;<br>
+                        
+                        while (!done) {<br>
+                           
+                           /* Increment l while numbers[l] &lt pivot */<br>
+                           while (numbers[l] &lt pivot) {<br>
+                              ++l;<br>
+                           }<br><br>
+                           
+                           /* Decrement h while pivot %lt numbers[h] */<br>
+                           while (pivot %lt numbers[h]) {<br>
+                              --h;<br>
+                           }<br><br>
+                           
+                           /* If there are zero or one elements remaining,<br>
+                            all numbers are partitioned. Return h */<br>
+                           if (l >= h) {<br>
+                              done = true;<br>
+                           }<br>
+                           else {<br>
+                              /* Swap numbers[l] and numbers[h],<br>
+                               update l and h */<br>
+                              temp = numbers[l];<br>
+                              numbers[l] = numbers[h];<br>
+                              numbers[h] = temp;<br><br>
+                              
+                              ++l;<br>
+                              --h;<br>
+                           }<br>
+                        }<br><br>
+                        
+                        return h;<br>
+                     }<br><br>
+                     
+                     void Quicksort(int numbers[], int i, int k) {<br>
+                        int j;<br><br>
+                        
+                        /* Base case: If there are 1 or zero elements to sort,<br>
+                         partition is already sorted */<br>
+                        if (i >= k) {<br>
+                           return;<br>
+                        }<br><br>
+                        
+                        /* Partition the data within the array. Value j returned<br>
+                         from partitioning is location of last element in low partition. */<br>
+                        j = Partition(numbers, i, k);<br><br>
+                        
+                        /* Recursively sort low partition (i to j) and<br>
+                         high partition (j + 1 to k) */<br>
+                        Quicksort(numbers, i, j);<br>
+                        Quicksort(numbers, j + 1, k);<br>
+                     }
+                </div>
+            </details>
+            <details>
+                <summary class="algorithms">Selection Sort</summary>
+                <p class="algorithm-description">Selection sort is a sorting algorithm that treats the input as two parts, a sorted part and an unsorted part, and repeatedly selects the proper next value to move from the unsorted part to the end of the sorted part.</p>
+                <p class="algorithm-description"> Sample Implementation:</p>
+                <div class="code-snippet">
+                    for (i = 0; i %lt numbersSize - 1; ++i) {<br><br>
+
+                        // Find index of smallest remaining element<br>
+                        indexSmallest = i;<br>
+                        for (j = i + 1; j %lt numbersSize; ++j) {<br><br>
+                     
+                           if (numbers[j] %lt numbers[indexSmallest]) {<br>
+                              indexSmallest = j;<br>
+                           }<br>
+                        }<br><br>
+                     
+                        // Swap numbers[i] and numbers[indexSmallest]<br>
+                        temp = numbers[i];<br>
+                        numbers[i] = numbers[indexSmallest];<br>
+                        numbers[indexSmallest] = temp;<br>
+                     }
+                </div>
+            </details>
+            <details>
+                <summary class="algorithms">Insertion Sort</summary>
+                <p class="algorithm-description">Insertion sort is a sorting algorithm that treats the input as two parts, a sorted part and an unsorted part, and repeatedly inserts the next value from the unsorted part into the correct location in the sorted part.</p>
+                <p class="algorithm-description"> Sample Implementation:</p>
+                <div class="code-snippet">
+                    for (i = 1; i %lt numbersSize; ++i) {<br>
+                        j = i;<br>
+                        // Insert numbers[i] into sorted part<br>
+                        // stopping once numbers[i] in correct position<br>
+                        while (j > 0 && numbers[j] %lt numbers[j - 1]) {<br><br>
+                          
+                           // Swap numbers[j] and numbers[j - 1]<br>
+                           temp = numbers[j];<br>
+                           numbers[j] = numbers[j - 1];<br>
+                           numbers[j - 1] = temp;<br>
+                           --j;<br>
+                        }<br>
+                     }               
+                </div>
+            </details>
+        </div>
+    </body>
+
+    <script src="script.js"></script>
+</html>
