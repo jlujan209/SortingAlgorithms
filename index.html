@@ -14,8 +14,11 @@
     <body>
         <h1 class="page-title">Learn Sorting Algoritms</h1>
         <div class="separator"></div>
-        <h2 class="visualizer-title">Sorting Algorithm Visualizer</h2>
+        <h2 class="section-title">Sorting Algorithm Visualizer</h2>
         <div class="buttons-container">
+            <button id="merge-sort" class="buttons">Merge Sort</button>
+            <button id="shell-sort" class="buttons">Shell Sort</button>
+            <button id="radix-sort" class="buttons">Radix Sort</button>
             <button id="quick-sort" class="buttons">Quick Sort</button>
             <button id="selection-sort" class="buttons">Selection Sort</button>
             <button id="insertion-sort" class="buttons">Insertion Sort</button>
@@ -84,6 +87,162 @@
             <div class="element" id="el_60"></div>
         </div>
         <div class="algorithms-container">
+            <h2 class="section-title" id="pi">Principles and Implementations</h2>
+            <details>
+                <summary class="algorithms">Merge Sort</summary>
+                <p class="algorithm-description">Merge sort is a sorting algorithm that divides a list into two halves, recursively sorts each half, and then merges the sorted halves to produce a sorted list. The recursive partitioning continues until a list of 1 element is reached, as list of 1 element is already sorted.</p>
+                <p class="algorithm-description">Sample Implementation:</p>
+                <div class="code-snippet">
+                    void Merge(int numbers[], int i, int j, int k) {<br>
+                        int mergedSize;                            // Size of merged partition<br>
+                        int mergePos;                              // Position to insert merged number<br>
+                        int leftPos;                               // Position of elements in left partition<br>
+                        int rightPos;                              // Position of elements in right partition<br>
+                        int* mergedNumbers = nullptr;<br><br>
+                     
+                        mergePos = 0;<br>
+                        mergedSize = k - i + 1;<br>
+                        leftPos = i;                               // Initialize left partition position<br>
+                        rightPos = j + 1;                          // Initialize right partition position<br>
+                        mergedNumbers = new int[mergedSize];       // Dynamically allocates temporary array<br>
+                                                                   // for merged numbers<br><br>
+                        
+                        // Add smallest element from left or right partition to merged numbers<br>
+                        while (leftPos <= j && rightPos <= k) {<br>
+                           if (numbers[leftPos] < numbers[rightPos]) {<br>
+                              mergedNumbers[mergePos] = numbers[leftPos];<br>
+                              ++leftPos;<br>
+                           }<br>
+                           else {
+                              mergedNumbers[mergePos] = numbers[rightPos];<br>
+                              ++rightPos;
+                              <br>
+                           }<br>
+                           ++mergePos;<br>
+                        }<br><br>
+                        
+                        // If left partition is not empty, add remaining elements to merged numbers<br>
+                        while (leftPos <= j) {<br>
+                           mergedNumbers[mergePos] = numbers[leftPos];<br>
+                           ++leftPos;<br>
+                           ++mergePos;<br>
+                        }<br><br>
+                        
+                        // If right partition is not empty, add remaining elements to merged numbers<br>
+                        while (rightPos <= k) {<br>
+                           mergedNumbers[mergePos] = numbers[rightPos];<br>
+                           ++rightPos;<br>
+                           ++mergePos;<br>
+                        }<br><br>
+                        
+                        // Copy merge number back to numbers<br>
+                        for (mergePos = 0; mergePos < mergedSize; ++mergePos) {<br>
+                           numbers[i + mergePos] = mergedNumbers[mergePos];<br>
+                        }<br>
+                        delete[] mergedNumbers;<br>
+                     }<br>
+                     
+                     void MergeSort(int numbers[], int i, int k) {<br>
+                        int j;<br><br>
+                        
+                        if (i < k) {<br>
+                           j = (i + k) / 2;  // Find the midpoint in the partition<br>
+                           <br>
+                           // Recursively sort left and right partitions<br>
+                           MergeSort(numbers, i, j);<br>
+                           MergeSort(numbers, j + 1, k);<br>
+                           <br>
+                           // Merge left and right partition in sorted order<br>
+                           Merge(numbers, i, j, k);<br>
+                        }<br>
+                     }
+                </div>
+            </details>
+            <details>
+                <summary class="algorithms">Shell Sort</summary>
+                <p class="algorithm-description">Shell sort is a sorting algorithm that treats the input as a collection of interleaved lists, and sorts each list individually with a variant of the insertion sort algorithm. Shell sort uses gap values to determine the number of interleaved lists. A gap value is a positive integer representing the distance between elements in an interleaved list. For each interleaved list, if an element is at index i, the next element is at index i + gap value.
+                    Shell sort begins by choosing a gap value K and sorting K interleaved lists in place. Shell sort finishes by performing a standard insertion sort on the entire array. Because the interleaved parts have already been sorted, smaller elements will be close to the array's beginning and larger elements towards the end. Insertion sort can then quickly sort the nearly-sorted array.
+                    Any positive integer gap value can be chosen. In the case that the array size is not evenly divisible by the gap value, some interleaved lists will have fewer items than others.
+                    </p>
+                <p class="algorithm-description">Sample Implementation:</p>
+                <div class="code-snippet">
+                    InsertionSortInterleaved(numbers, numbersSize, startIndex, gap) {<br>
+                        i = 0<br>
+                        j = 0<br>
+                        temp = 0  // Temporary variable for swap<br><br>
+                     
+                        for (i = startIndex + gap; i < numbersSize; i = i + gap) {<br>
+                           j = i<br>
+                           while (j - gap >= startIndex && numbers[j] < numbers[j - gap]) {<br>
+                              temp = numbers[j]<br>
+                              numbers[j] = numbers[j - gap]<br>
+                              numbers[j - gap] = temp<br>
+                              j = j - gap<br>
+                           }<br>
+                        }<br>
+                     }<br><br>
+                     ShellSort(numbers, numbersSize, gapValues) {<br>
+                        for each (gapValue in gapValues) {<br>
+                           for (i = 0; i < gapValue; i++) {<br>
+                              InsertionSortInterleaved(numbers, numbersSize, i, gapValue)<br>
+                           }<br>
+                        }<br>
+                     }
+                     
+                </div>
+            </details>
+            <details>
+                <summary class="algorithms">Radix Sort</summary>
+                <p class="algorithm-description">Radix sort is a sorting algorithm specifically for an array of integers: The algorithm processes one digit at a time starting with the least significant digit and ending with the most significant. Two steps are needed for each digit. First, all array elements are placed into buckets based on the current digit's value. Then, the array is rebuilt by removing all elements from buckets, in order from lowest bucket to highest.</p>
+                <p class="algorithm-description">Sample Implementation:</p>
+                <div class="code-snippet">
+                    // Returns the maximum length, in number of digits, out of all elements in the array<br><br>
+                    RadixGetMaxLength(array, arraySize) {<br>
+                       maxDigits = 0<br>
+                       for (i = 0; i < arraySize; i++) {<br>
+                          digitCount = RadixGetLength(array[i])<br>
+                          if (digitCount > maxDigits)<br>
+                             maxDigits = digitCount<br>
+                       }<br>
+                       return maxDigits<br>
+                    }<br><br>
+                    
+                    // Returns the length, in number of digits, of value<br>
+                    RadixGetLength(value) {<br>
+                       if (value == 0)<br>
+                          return 1<br><br>
+                    
+                       digits = 0<br>
+                       while (value != 0) {<br>
+                          digits = digits + 1<br>
+                          value = value / 10<br>
+                       }<br>
+                       return digits<br>
+                    }<br><br>
+                    RadixSort(array, arraySize) {<br>
+                        buckets = create array of 10 buckets<br><br>
+                     
+                        // Find the max length, in number of digits<br>
+                        maxDigits = RadixGetMaxLength(array, arraySize)<br><br>
+                           
+                        // Start with the least significant digit<br>
+                        pow10 = 1<br>
+                        for (digitIndex = 0; digitIndex < maxDigits; digitIndex++) {<br>
+                           for (i = 0; i < arraySize; i++) {<br>
+                              bucketIndex = abs(array[i] / pow10) % 10<br>
+                              Append array[i] to buckets[bucketIndex]<br>
+                           }<br>
+                           arrayIndex = 0<br>
+                           for (i = 0; i < 10; i++) {<br>
+                              for (j = 0; j < buckets[i]⇢size(); j++)<br>
+                                 array[arrayIndex++] = buckets[i][j]<br>
+                           }<br>
+                           pow10 = 10 * pow10<br>
+                           Clear all buckets<br>
+                        }<br>
+                     }<br>
+                </div>
+            </details>
             <details>
                 <summary class="algorithms">Quick Sort</summary>
                 <p class="algorithm-description">Quicksort is a sorting algorithm that repeatedly partitions the input into low and high parts (each part unsorted), and then recursively sorts each of those parts. To partition the input, quicksort chooses a pivot to divide the data into low and high parts. The pivot can be any value within the array being sorted, commonly the value of the middle array element. Ex: For the list {4 34 10 25 1}, the middle element is located at index 2 (the middle of indices 0..4) and has a value of 10.
@@ -114,8 +273,8 @@
                               ++l;<br>
                            }<br><br>
                            
-                           /* Decrement h while pivot %lt numbers[h] */<br>
-                           while (pivot %lt numbers[h]) {<br>
+                           /* Decrement h while pivot < numbers[h] */<br>
+                           while (pivot < numbers[h]) {<br>
                               --h;<br>
                            }<br><br>
                            
@@ -164,13 +323,13 @@
                 <p class="algorithm-description">Selection sort is a sorting algorithm that treats the input as two parts, a sorted part and an unsorted part, and repeatedly selects the proper next value to move from the unsorted part to the end of the sorted part.</p>
                 <p class="algorithm-description"> Sample Implementation:</p>
                 <div class="code-snippet">
-                    for (i = 0; i %lt numbersSize - 1; ++i) {<br><br>
+                    for (i = 0; i < numbersSize - 1; ++i) {<br><br>
 
                         // Find index of smallest remaining element<br>
                         indexSmallest = i;<br>
-                        for (j = i + 1; j %lt numbersSize; ++j) {<br><br>
+                        for (j = i + 1; j < numbersSize; ++j) {<br><br>
                      
-                           if (numbers[j] %lt numbers[indexSmallest]) {<br>
+                           if (numbers[j] < numbers[indexSmallest]) {<br>
                               indexSmallest = j;<br>
                            }<br>
                         }<br><br>
@@ -187,11 +346,11 @@
                 <p class="algorithm-description">Insertion sort is a sorting algorithm that treats the input as two parts, a sorted part and an unsorted part, and repeatedly inserts the next value from the unsorted part into the correct location in the sorted part.</p>
                 <p class="algorithm-description"> Sample Implementation:</p>
                 <div class="code-snippet">
-                    for (i = 1; i %lt numbersSize; ++i) {<br>
+                    for (i = 1; i < numbersSize; ++i) {<br>
                         j = i;<br>
                         // Insert numbers[i] into sorted part<br>
                         // stopping once numbers[i] in correct position<br>
-                        while (j > 0 && numbers[j] %lt numbers[j - 1]) {<br><br>
+                        while (j > 0 && numbers[j] < numbers[j - 1]) {<br><br>
                           
                            // Swap numbers[j] and numbers[j - 1]<br>
                            temp = numbers[j];<br>

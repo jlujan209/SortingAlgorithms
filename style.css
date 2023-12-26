@@ -20,7 +20,9 @@
     opacity: 0;
 }
 
-.visualizer-title{
+
+
+.section-title{
     color: white;
     font-size: 2.5em;
     text-align: center;
@@ -29,6 +31,9 @@
     opacity: 0;
     animation: 2s loadIn forwards;
     animation-delay: 0.5s;
+}
+#pi{
+    animation-delay: 1s;
 }
 
 .separator{
@@ -64,6 +69,8 @@ body{
     flex-direction: row;
     flex-wrap: nowrap;
     align-items:end;
+    background-color: rgb(32, 32, 33);
+    border-radius: 1em 1em 0 0;
 }
 
 .buttons-container{
@@ -92,7 +99,7 @@ body{
     margin-bottom: 1em;
     opacity: 0;
     animation: 2s loadIn forwards;
-    animation-delay: 2s;
+    animation-delay: 1s;
     
 }
 
